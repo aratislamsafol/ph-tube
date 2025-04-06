@@ -9,12 +9,20 @@ function categoryLoad(data){
     const category = document.getElementById('category');
     data.forEach(element => {
         category.innerHTML += 
-        `<button class="p-2 bg-blue-500 hover:bg-blue-700 text-white rounded text-sm cursor-pointer" onclick="loadCategoryVideo(${element.category_id})" type="button" >${element.category}</button>
+        `<button id="btn-${element.category_id}" class="btn-category p-2 bg-blue-500 hover:bg-blue-700 text-white rounded text-sm cursor-pointer" onclick="loadCategoryVideo(${element.category_id})" type="button" >${element.category}</button>
         `
     });
 }
-
+const removeActiveClass = ()=>{
+    const generalbtnClass = document.getElementsByClassName('btn-category');
+    for(let btn of generalbtnClass){
+        btn.classList.remove('active');
+    }
+}
 function loadCategoryVideo(id){
+    removeActiveClass();
+    const activeItem = document.getElementById(`btn-${id}`);
+    activeItem.classList.add('active');
     loadData(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`, videoLoad);
 }
 
