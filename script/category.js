@@ -77,7 +77,7 @@ function videoLoad(data){
                             </div>
                             <button class="p-1 text-xs bg-green-400 rounded hover:text-white hover:bg-green-600 cursor-pointer flex-end" onclick="loadDetailsFromVideo('${element.video_id}')">Read More</button>
                         </div>
-                        <p class="mt-[2px]text-xs font-semibold text-stone-400">${element.others.views}</p>
+                        <p class="mt-[2px] text-xs font-semibold text-stone-400">${element.others.views}</p>
                     </div>
                 </div>    
             </div>
@@ -93,7 +93,13 @@ function videoLoad(data){
         `
     }
 }
-
+// search Data from API
+function seachLoadVideos(searchText = ''){
+    loadData(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`, videoLoad)    
+}
+document.getElementById('simple-search').addEventListener('keyup', (event)=>{
+    seachLoadVideos(event.target.value);
+});
 
 // videos
 loadData('https://openapi.programming-hero.com/api/phero-tube/categories', categoryLoad)
