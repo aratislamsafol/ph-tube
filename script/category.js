@@ -1,7 +1,7 @@
 function loadData(api, cb ){
     fetch(api)
         .then(res => res.json())
-        .then(data => cb(data.categories || data.videos || data.category))
+        .then(data => cb(data.categories || data.videos || data.category || data.video))
         .catch(err => console.error('Error loading data:', err));
 }
 
@@ -34,7 +34,20 @@ function timeCalculate(date){
     }
     return `${hrs} hrs ${minitue} minitue ago`
 }
+// read More Button track Data
+function loadDetailsFromVideo(id){
+    const data = loadData(`https://openapi.programming-hero.com/api/phero-tube/video/${id}`, modalShow)
+}
 
+function modalShow(data){
+    const modalContent = document.getElementById('modal-content');
+    modalContent.innerHTML = `
+        <img src="${data.thumbnail}" alt="Image Thumbnil"/>
+        <p class="text-xs text-justify mt-2">${data.description}</p>
+    `
+    // modal open
+     document.getElementById('modalBoxItem').showModal();
+}
 function videoLoad(data){
     const videoContainer = document.getElementById('videoContainer');
     videoContainer.innerHTML = "";
@@ -57,10 +70,12 @@ function videoLoad(data){
                         <a href="#">
                             <h5 class="mb-1 text-md font-bold text-gray-900 dark:text-white">${element.title}</h5>
                         </a>
-                        <div class="flex gap-2 items-center mt-0 pt-0">
-                            <p class="text-xs font-normal text-gray-700 dark:text-gray-400">${element.authors[0].profile_name}</p>
-                            ${element.authors[0].verified == true? `<img class="w-3" src="Group.png">` : ``}
-                        
+                        <div class="flex justify-between mt-0 pt-0">
+                            <div class="flex gap-2 items-center">
+                                <p class="text-xs font-normal text-gray-700 dark:text-gray-400">${element.authors[0].profile_name}</p>
+                                ${element.authors[0].verified == true? `<img class="w-3" src="Group.png">` : ``}
+                            </div>
+                            <button class="p-1 text-xs bg-green-400 rounded hover:text-white hover:bg-green-600 cursor-pointer flex-end" onclick="loadDetailsFromVideo('${element.video_id}')">Read More</button>
                         </div>
                         <p class="mt-[2px]text-xs font-semibold text-stone-400">${element.others.views}</p>
                     </div>
@@ -82,5 +97,4 @@ function videoLoad(data){
 
 // videos
 loadData('https://openapi.programming-hero.com/api/phero-tube/categories', categoryLoad)
-
 loadData('https://openapi.programming-hero.com/api/phero-tube/videos', videoLoad)

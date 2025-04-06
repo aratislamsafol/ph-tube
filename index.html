@@ -53,6 +53,22 @@
     <main class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2  mt-4" id="videoContainer">
 
     </main>
+
+    <!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="modalBoxItem.showModal()">open modal</button>
+<dialog id="modalBoxItem" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <div id="modal-content">
+
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
     <script src="script/category.js"></script>
     <script src="script/main.js"></script>
 </body>
