@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- DaisyUi & Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+    <style>
+        .regular-font {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="regular-font w-11/12 mx-auto">
+    <header>
+        <nav class="border-b border-stone-200 py-2">
+            <ul class="flex justify-between items-center">
+                <li><a href=""><img class="w-18" src="Logo.png" alt="logo"></a></li>
+                <!-- search field -->
+                <li>
+                    <form class="flex items-center max-w-sm mx-auto">   
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="w-full">
+                            <input type="text" id="simple-search" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-2 p-1  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-[10px]" placeholder="Search Items..." required />
+                        </div>
+                        <button type="submit" class="p-1 ms-1 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                            <span class="sr-only">Search</span>
+                        </button>
+                    </form>
+                </li>
+                <li><button class="bg-red-500 hover:bg-red-700 text-white font-medium text-sm py-1 px-3 border border-red-700 rounded cursor-pointer">
+                    Blog
+                  </button></li>
+            </ul>
+        </nav>
+        <!-- category section -->
+         <div class="flex justify-center mt-4 gap-2" id="category">
+         </div>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2  mt-4" id="videoContainer">
+
+    </main>
+    <script src="script/category.js"></script>
+    <script src="script/main.js"></script>
+</body>
+</html>
